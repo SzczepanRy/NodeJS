@@ -16,7 +16,7 @@ class JsEvents {
 
     addListiner() {
         const addBtn = document.querySelector('.add')
-        addBtn.addEventListener("click", () = {
+        addBtn.addEventListener("click", () => {
 
             //this.getKind
             //handle add
