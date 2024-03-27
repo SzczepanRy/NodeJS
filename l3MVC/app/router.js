@@ -2,20 +2,17 @@ import { getRequestData, serveFile } from "./utils.js";
 import controller from "./controller.js";
 
 const router = async (req, res) => {
-
     switch (req.method) {
         case "GET":
-            let url = decodeURI(req.url)
-            if (url == '/') {
-
-                serveFile("index.html", res)
+            let url = decodeURI(req.url);
+            if (url == "/") {
+                serveFile("index.html", res);
             } else {
-                let name = url.substring(1)
-                serveFile(name, res)
+                let name = url.substring(1);
+                serveFile(name, res);
             }
 
         case "POST":
-
             console.log(req.url);
 
             if (req.url == "/add") {
@@ -24,44 +21,39 @@ const router = async (req, res) => {
                 // odpowiedz do klienta
                 let data = await getRequestData(req);
 
-                let resp = controller.add(data)
-                res.writeHead(200, { 'Content-Type': 'text/plain;charset=utf-8' });
-                res.end(JSON.stringify(resp))
-            }
-            else if (req.url == "/getall") {
+                let resp = controller.add(data);
+                res.writeHead(200, { "Content-Type": "text/plain;charset=utf-8" });
+                res.end(JSON.stringify(resp));
+            } else if (req.url == "/getall") {
                 //  pobierz dane z tablicy zwierząt i odpowiedz do klienta
                 // let data = await getRequestData(req);
 
-                let resp = controller.getall()
-                res.writeHead(200, { 'Content-Type': 'text/plain;charset=utf-8' });
-                res.end(JSON.stringify(resp))
-            }
-            else if (/\/delete\/[0-9]+/.test(req.url)) {
+                let resp = controller.getall();
+                res.writeHead(200, { "Content-Type": "text/plain;charset=utf-8" });
+                res.end(JSON.stringify(resp));
+            } else if (/\/delete\/[0-9]+/.test(req.url)) {
                 //  usuń dane z tablicy zwierząt i odpowiedz do klienta
-                let id = +(req.url.split("/")[req.url.split("/").length - 1])
-
-
-                console.log(id);
+                let id = +req.url.split("/")[req.url.split("/").length - 1];
 
                 let data = await getRequestData(req);
 
-                let resp = controller.add(id)
-                res.writeHead(200, { 'Content-Type': 'text/plain;charset=utf-8' });
-                res.end(JSON.stringify(resp))
-            }
-            else if (req.url == /\/update\/[0-9]+/) {
+                let resp = controller.delete(id);
+
+                res.writeHead(200, { "Content-Type": "text/plain;charset=utf-8" });
+                res.end(JSON.stringify(resp));
+            } else if (/\/update\/[0-9]+/.test(req.url)) {
                 //  updatuj dane z tablicy zwierząt i odpowiedz do klienta
+                let id = +req.url.split("/")[req.url.split("/").length - 1];
                 let data = await getRequestData(req);
 
-                let resp = controller.add(data)
-                res.writeHead(200, { 'Content-Type': 'text/plain;charset=utf-8' });
-                res.end(JSON.stringify(resp))
+                let resp = controller.update(id, data);
+                res.writeHead(200, { "Content-Type": "text/plain;charset=utf-8" });
+                res.end(JSON.stringify(resp));
             }
             // pozostałe funkcje
 
             break;
-
     }
-}
+};
 
-export default router
+export default router;

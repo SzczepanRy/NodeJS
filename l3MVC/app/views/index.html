@@ -1,48 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="/index.js"></script>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="/index.js"></script>
-    <link rel="stylesheet" href="/style.css">
-</head>
+    <body>
+        <h1>MVC - Model , view , Controller</h1>
 
-<body>
+        <div class="buttons">
+            <button class="add">add</button>
+            <button class="addFive">addFive</button>
+            <button class="deleteSelected">deleteSelected</button>
+            <button class="updateSelected">updateSelected</button>
+        </div>
+        <div class="inputs">
+            <select class="kind" name="kind" id="kind">
+                <option value="kot">kot</option>
+                <option value="pies">pies</option>
+                <option value="krowa">krowa</option>
+            </select>
 
-    <h1>MVC - Model , view , Controller</h1>
+            <select class="color" name="color" id="color">
+                <option value="white">white</option>
+                <option value="black">black</option>
+                <option value="yellow">yellow</option>
+            </select>
 
-    <div class="buttons">
-        <button class="add">add</button>
-        <button class="addFive">addFive</button>
-        <button class="deleteSelected">deleteSelected</button>
-        <button class="updateSelected">updateSelected</button>
-        <button class="getAll">getAll</button>
-        <button class="deleteAll">deleteAll</button>
-    </div>
-    <div class="inputs">
-
-        <select class="kind" name="kind" id="kind">
-            <option value="kot">kot</option>
-            <option value="pies">pies</option>
-            <option value="krowa">krowa</option>
-        </select>
-
-        <select class="color" name="color" id="color">
-            <option value="white">white</option>
-            <option value="black">black</option>
-            <option value="yellow">yellow</option>
-        </select>
-
-        <select class="delete" name="delete" id="delete">
-
-        </select>
-
-
-    </div>
-
-</body>
-
+            <select class="delete" name="delete" id="delete"></select>
+        </div>
+    </body>
 </html>

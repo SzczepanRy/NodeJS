@@ -1,58 +1,38 @@
-import { animalsArray } from "./model.js"
+import { animalsArray, deleteAnimal, updateAnimal } from "./model.js";
 
 const controller = {
     add: (body) => {
-
         try {
-            body = JSON.parse(body)
-            body["id"] = animalsArray.length
-            animalsArray.push(body)
-            return { 'status': 'added animal', "animal": animalsArray }
+            body = JSON.parse(body);
+            body["id"] = animalsArray.length;
+            animalsArray.push(body);
+            return { status: "added animal", animal: animalsArray };
         } catch (err) {
-            return { "status": "error" }
+            return { status: "error : " + err };
         }
     },
     delete: (id) => {
-
         try {
-            animalsArray = animalsArray.filter((el) => {
-                if (el.id != id) {
-                    return el
-                }
-            })
-            return { 'status': 'deleted animal', "animal": animalsArray }
+            deleteAnimal(id);
+            return { status: "deleted animal", animal: animalsArray };
         } catch (err) {
-            return { "status": "error" }
+            return { status: "error : " + err };
         }
     },
     update: (id, body) => {
-
         try {
-            body = JSON.parse(body)
-
-            animalsArray = animalsArray.map((el) => {
-                if (el.id != id) {
-
-                    return el
-                } else {
-                    // body["id"] = animalsArray.length
-                    return body
-                }
-            })
-            return { 'status': 'updated animals', "animal": animalsArray }
+            updateAnimal(id, body);
+            return { status: "updated animals", animal: animalsArray };
         } catch (err) {
-            return { "status": "error" }
+            return { status: "error : " + err };
         }
-
     },
     getall: () => {
         try {
-
-            return { 'status': 'got animals', "animal": animalsArray }
+            return { status: "got animals", animal: animalsArray };
         } catch (err) {
-            return { "status": "error" }
+            return { status: "error : " + err };
         }
-    }
-
-}
-export default controller
+    },
+};
+export default controller;

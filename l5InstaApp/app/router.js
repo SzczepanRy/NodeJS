@@ -27,7 +27,7 @@ const router = async (fileController, jsonController, req, res) => {
 
                 let resp = jsonController.addSingle(dataJSON);
 
-                let fr = await fileController.createFile();
+                // let fr = await fileController.createFile();
                 console.log(fr);
 
                 res.writeHead(200, { "Content-Type": "application/json;charset=utf-8" });

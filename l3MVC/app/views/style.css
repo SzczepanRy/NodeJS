@@ -14,10 +14,8 @@ body {
 }
 
 .buttons {
-
     display: flex;
     gap: 10px;
-
 }
 
 .inputs {
