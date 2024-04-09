@@ -1,4 +1,4 @@
-import photos from "../model.js";
+import { photos } from "../model.js";
 
 export default class JsonController {
   constructor() {
@@ -14,7 +14,7 @@ export default class JsonController {
     if (photoArr.length == 1) {
       return { foundId: true, item: photoArr[0] };
     } else {
-      return { foundId: false, item: photoArr[0] };
+      return { foundId: false, item: "no item with id " + id };
     }
   }
 
@@ -35,6 +35,7 @@ export default class JsonController {
   deleteSingle(id) {
     let { foundId, item } = this._findId(id);
     if (!foundId) {
+  
       return { message: "did not find id ", value: null };
     } else {
       this.currentPhotos = this.currentPhotos.filter((photo) => {

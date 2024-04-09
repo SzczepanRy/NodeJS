@@ -1,6 +1,6 @@
 import { getRequestData, parseFileToJson } from "./readReq.js";
 
-const router = async (fileController, jsonController, req, res) => {
+const imageRouter = async (fileController, jsonController, req, res) => {
   switch (req.method) {
     case "GET":
       if (req.url == "/api/photos") {
@@ -77,4 +77,4 @@ const router = async (fileController, jsonController, req, res) => {
   }
 };
 
-export default router;
+export default imageRouter;

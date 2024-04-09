@@ -1,4 +1,4 @@
-let photos = [
+export let photos = [
     {
         "id": 1711195846479,
         "album": "album3",
@@ -26,4 +26,29 @@ let photos = [
         ]
     }
 ]
-export default photos
+export let tags = [
+    "#love"
+    , "#instagood"
+    , "#fashion"
+    , "#instagram"
+    , "#photooftheday"
+    , "#art"
+    , "#photography"
+    , "#beautiful"
+    , "#nature"
+    , "#picoftheday"
+    , "#travel"
+    , "#happy"
+    , "#cute"
+    , "#instadaily"
+    , "#style"
+    , "#tbt"
+    , "#repost"
+    , "#followme"
+    , "#summer"
+    , "#reels"
+    , "#like4like"
+    , "#beauty"
+    , "#fitness"
+    , "#food"
+]
