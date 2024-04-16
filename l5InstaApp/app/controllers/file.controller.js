@@ -1,4 +1,4 @@
-import formidable, { errors as formidableErrors } from "formidable";
+import formidable from "formidable";
 import path from "path";
 import fs from "fs";
 import { __dirname } from "../readReq.js";
@@ -10,6 +10,7 @@ export default class FileController {
 
   async createFile(req) {
     return new Promise((resolve, reject) => {
+      let dir = ""
       let form = formidable({
         multiples: true,
         encoding: "utf-8",
@@ -17,21 +18,41 @@ export default class FileController {
         uploadDir: __dirname + "\\upload\\",
         keepExtensions: true,
         // Use it to control newFilename.
-        filename: (name, ext, part, form) => {
-          return part.originalFilename; // Will be joined with options.uploadDir.
-        },
+        // filename: (name, ext, part, form) => {
+        //   console.log(part);
+        //   console.log("AA");
+        //   return part.originalFilename; // Will be joined with options.uploadDir.
+        // },
       });
 
-      // form.on("fileBegin", function (name, file) {
-      //   console.log(__dirname + "\\upload\\" + file.originalFilename);
-      //   file.path = __dirname + "\\upload\\" + file.originalFilename;
-      // });
+      form.on('field', function (field, value) {
+        console.log(field);
+        if (field == "album") {
+          dir = value
+
+          //##################################################################
+          //Create dir if it desnt exist
+          //##################################################################
+
+        }
+
+        //receive form fields here
+      })
+      form.on("fileBegin", function (name, file) {
+        if (dir != "") {
+          file.path = __dirname + "\\upload\\" + `\\${dir}\\` + file.name;
+
+        } else {
+          file.path = __dirname + "\\upload\\" + file.name;
+
+        }
+      });
       form.parse(req, function (err, fields, files) {
         if (err) {
           reject(err);
         } else {
           // console.log(files);
-          resolve(files);
+          resolve({ fields, files });
         }
       });
     });

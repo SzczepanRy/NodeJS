@@ -35,7 +35,7 @@ export default class JsonController {
   deleteSingle(id) {
     let { foundId, item } = this._findId(id);
     if (!foundId) {
-  
+
       return { message: "did not find id ", value: null };
     } else {
       this.currentPhotos = this.currentPhotos.filter((photo) => {
@@ -50,7 +50,7 @@ export default class JsonController {
     let { foundId, item } = this._findId(data.id);
     if (!foundId) {
       this.currentPhotos = [...this.currentPhotos, data];
-      console.log(this.currentPhotos);
+      // console.log(this.currentPhotos);
       return { message: "added sucessfuly", value: null };
     } else {
       return { message: "item with the id exisits ", value: item };

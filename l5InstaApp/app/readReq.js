@@ -21,14 +21,34 @@ export const getRequestData = async (req) => {
     });
 };
 
+// export const getAlbumFromMultiform = (data) => {
+
+//     let validArr = []
+//     let strArr = data.split("------")
+//     strArr = strArr[strArr.length - 2].split("\n")
+
+//     let i = 0
+//     for (let str of strArr) {
+//         if (i != 0 && i != strArr.length - 1 && !str.includes("Content-Type:") && !str.includes("Content-Disposition:") && str != "\n" && str != "\r") {
+//             validArr.push(str)
+//         }
+//         i++
+//     }
+//     //################################ could change in later version
+//     console.log(validArr);
+//     return validArr[0].replace("\r", "")
+// }
+
+
 export const parseFileToJson = (file) => {
-    console.log(file.upload[0].originalFilename);
+    // console.log(file);
     let data = {};
 
     const date = Date.now();
     data["id"] = date;
     data["album"] = " -not supported- ";
-    data["originalName"] = file.upload[0].originalFilename;
+    // data["originalName"] = "A";
+    data["originalName"] = file.name;
     data["lastChange"] = "original";
     let hist = [
         {
