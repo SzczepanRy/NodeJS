@@ -39,14 +39,14 @@ export const getRequestData = async (req) => {
 //     return validArr[0].replace("\r", "")
 // }
 
-
-export const parseFileToJson = (file) => {
+export const parseFileToJson = (file, dir) => {
     // console.log(file);
     let data = {};
 
     const date = Date.now();
     data["id"] = date;
-    data["album"] = " -not supported- ";
+    data["album"] = dir;
+    data["url"] = file.path;
     // data["originalName"] = "A";
     data["originalName"] = file.name;
     data["lastChange"] = "original";
