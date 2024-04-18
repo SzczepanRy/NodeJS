@@ -63,7 +63,8 @@ export default class JsonController {
         if (!foundId) {
             return { message: "item with the id does not exisitst ", value: nil };
         } else {
-            item = item.history.append(data);
+            console.log(item.history);
+            item = item.history.push(data);
             return { message: "added sucessfuly", value: item };
         }
     }

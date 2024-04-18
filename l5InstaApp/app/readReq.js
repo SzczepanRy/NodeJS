@@ -39,6 +39,15 @@ export const getRequestData = async (req) => {
 //     return validArr[0].replace("\r", "")
 // }
 
+export const validate = (val, message) => {
+    if (typeof val == "string" || typeof val == "number") {
+        return false;
+    } else {
+        console.log(message);
+        return true;
+    }
+};
+
 export const parseFileToJson = (file, dir) => {
     // console.log(file);
     let data = {};

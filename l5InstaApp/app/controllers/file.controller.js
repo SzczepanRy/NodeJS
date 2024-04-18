@@ -21,7 +21,7 @@ export default class FileController {
             let dir = "";
             form.on("field", function (name, field) {
                 dir = field;
-                dir = dir.replace(" ", "");
+                dir = dir.replace(" ", "").replace("\n", "").replace("\r", "");
 
                 // this shit doesnt work on windows console.log(!fs.existsSync());
                 console.log(path.join(__dirname, "\\upload\\" + dir));
@@ -38,7 +38,12 @@ export default class FileController {
                 if (err) {
                     reject(err);
                 } else {
-                    fs.rename(files.file.path, __dirname + "\\upload\\" + `${dir}\\` + files.file.name, function (err) {
+                    let name = files.file.name.replace("\n", "").replace("\r", "");
+                    files.file.name = name;
+
+                    let targetPath = `${__dirname}\\upload\\${dir}\\${files.file.name}`;
+
+                    fs.rename(files.file.path, targetPath, function (err) {
                         if (err) throw err;
                         console.log("Successfully renamed and moved");
                     });

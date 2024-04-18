@@ -50,7 +50,17 @@ const imageRouter = async (fileController, jsonController, req, res) => {
                 //if form do they hae to have the same names to trigger update ??
                 //##############################################
                 let dataJSON = JSON.parse(data);
-                let resp = jsonController.updataSingle(dataJSON.id, dataJSON.log);
+
+                let id = dataJSON.id;
+
+                if (typeof id != "string") {
+                    res.writeHead(200, {
+                        "Content-Type": "application/json;charset=utf-8",
+                    });
+                    res.end(JSON.stringify({ message: "could not find id" }));
+                }
+
+                let resp = jsonController.updataSingle(id, dataJSON.log);
 
                 res.writeHead(200, {
                     "Content-Type": "application/json;charset=utf-8",
