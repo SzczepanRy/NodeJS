@@ -26,7 +26,7 @@ const verifyToken = (token) => {
 const processToken = () => {
     createToken();
     verifyToken(
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFhYUB0ZXN0LmNvbSIsImFueURhdGEiOiIxMjMiLCJpYXQiOjE3MTQ2ODk4MjAsImV4cCI6MTcxNDY4OTg1MH0.PLwdawVHS3RBgmOxGcoSETkN4W8fmGToEGp4o30Vet0"
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFhYUB0ZXN0LmNvbSIsImFueURhdGEiOiIxMjMiLCJpYXQiOjE3MTQ2OTIwMzcsImV4cCI6MTcxNDY5MjMzN30.G4bSP1pD3qjs2o0LE0TfSR7XIkSpKfr-Hl8mMYnpQIU"
     );
 };
 
