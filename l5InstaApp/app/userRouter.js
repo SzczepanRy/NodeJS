@@ -27,13 +27,15 @@ const userRouter = async (userController, req, res) => {
                 res.end(JSON.stringify(resp));
                 break;
             }
-            if (req.url == "/api/user/redgister") {
+            if (req.url == "/api/user/register") {
                 let data = await getRequestData(req);
 
                 data = JSON.parse(data);
                 // utworzenie nowego taga
 
                 let resp = await userController.redgister(data);
+                res.setHeader('Authorization', 'Bearer '+ resp.token);
+
                 res.writeHead(200, {
                     "Content-Type": "application/json;charset=utf-8",
                 });

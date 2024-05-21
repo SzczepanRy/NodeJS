@@ -3,7 +3,7 @@ import { getRequestData, parseFileToJson, validate } from "./readReq.js";
 import { __dirname } from "./readReq.js";
 import { error } from "console";
 
-const profileRouter = async (filterController, jsonController, req, res) => {
+const  filterRouter = async (filterController, jsonController, req, res) => {
     switch (req.method) {
         case "GET":
             if (/^\/api\/filters\/metadata\/[0-9]+$/.test(req.url)) {

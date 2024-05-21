@@ -15,19 +15,19 @@ export class Jwt {
             return { success: false, message: ex.message };
         }
     }
-    static vaildateTokenHeader(req) {
+    static validateTokenHeader(req) {
         let resp = { success: false, message: 'nothing worked' }
         let authStr = req.headers.authorization || null
         console.log(authStr)
         if (authStr == null) {
-            resp = { sucess: false, message: "auth brearen not provided " }
+            resp = { success: false, message: "auth bearer not provided " }
         } else {
             let authArr = authStr.split(" ")
             if (authArr[0] == "Bearer" || authArr[0] == "bearer") {
                 //validi
                 let token = authArr[1]
                 console.log("current token ", token)
-                resp = { succes: true, message: token }
+                resp = { success: true, message: token }
             } else {
                 resp = { success: false, message: "not valid Auth header " }
             }

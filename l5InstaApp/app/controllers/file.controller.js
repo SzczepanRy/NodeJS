@@ -8,6 +8,49 @@ export default class FileController {
         // this.__dirname = path.resolve();
     }
 
+    async createProfile(req, email) {
+        return new Promise((resolve, reject) => {
+            if (!email) {
+                resolve()
+            } else {
+                if (!fs.existsSync(`${__dirname}\\${email}`)) {
+
+                    fs.mkdir(path.join(__dirname, `\\${email}\\`), (err) => {
+                        console.log(err)
+                    })
+                }
+
+                let form = formidable({
+                    // multiples: true,
+                    encoding: "utf-8",
+                    allowEmptyFiles: false,
+                    uploadDir: __dirname + `\\${email}\\`,
+                    keepExtensions: true,
+                    // Use it to control newFilename.
+                });
+
+                form.parse(req, function (err, fields, files) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        console.log(files)
+                        let targetPath = `${__dirname}\\${email}\\profil.png`;
+
+                        fs.rename(files.file.path, targetPath, function (err) {
+                            if (err) throw err;
+                            console.log("Successfully renamed and moved");
+                        });
+                        files.file.path = `${__dirname}\\${email}\\profil.png`;
+
+                        resolve({ fields, files });
+                    }
+                });
+
+            }
+        });
+    }
+
+
     async createFile(req) {
         return new Promise((resolve, reject) => {
             let form = formidable({

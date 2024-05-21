@@ -23,7 +23,7 @@ export class UserController {
 
     async redgister({ name, lastname, email, password }) {
         if (!name || !lastname || !email || !password) {
-            return { success: false, message: "wromg data format" };
+            return { success: false, message: "wromg data format provide the following keys : name , lastname , email , password"  };
         }
         let { found } = this._findByEmail(email);
         if (found) {
@@ -67,7 +67,7 @@ export class UserController {
         });
         return { success: true, message: "sucessfuly added the user" };
     }
-    validateToken(token) {
+    async validateToken(token) {
         let { success, message } = Jwt.verifyToken(token);
         if (!success) {
             return { success, message ,foundUser:false};
@@ -85,6 +85,27 @@ export class UserController {
 
     }
 
+    async updateUser({name , lastname} , token){
+        let resp =  await this.validateToken(token)
+        if(resp.success){
+            let {found , foundUser } = this._findByEmail(resp.foundUser.email)
+            if(!found){
+                return {success : false , message: "did not find user" }
+            }else{
+                if(name){
+                foundUser.name = name
+                }
+                if(lastname){
+                foundUser.lastname = lastname
+                }
+                this.users = [...this.users ,foundUser]
+                return {success: true , message:"rename was successfull"}
+            }
+        }else{
+            return resp
+        }
+    }
+
     login({ email, password }) {
         if (!email || !password) {
             return { success: false, message: "wromg data format" };
@@ -98,6 +119,6 @@ export class UserController {
         if (!isVlaid) {
             return { success: false, message: "wrong password" };
         }
-        return { success: true, message: "login succesful" };
+        return { success: true, message: "login succesful" , token: Jwt.createToken(email) };
     }
 }
