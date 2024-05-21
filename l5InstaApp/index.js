@@ -24,5 +24,7 @@ createServer(async (req, res) => {
         await filterRouter(fic, jc, req, res);
     } else if (req.url.search("/api/user") != -1) {
         await userRouter(uc, req, res);
+    }else if (req.url.search("/api/profile") != -1) {
+        await userRouter(uc, req, res);
     }
 }).listen(process.env.APP_PORT, () => console.log("listen on 3000"));

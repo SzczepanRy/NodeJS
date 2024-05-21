@@ -67,6 +67,23 @@ export class UserController {
         });
         return { success: true, message: "sucessfuly added the user" };
     }
+    validateToken(token) {
+        let { success, message } = Jwt.verifyToken(token);
+        if (!success) {
+            return { success, message ,foundUser:false};
+        }
+        let { found, foundUser } = this._findByEmail(message.email);
+        if (!found) {
+            return { success: false, message: "did not find the user email" ,foundUser:false};
+        }
+        if (foundUser.confirmed) {
+            return { success: true, message: "sucessfuly found the user", foundUser };
+        } else {
+            return { success: false, message: "user is not valid",foundUser:false };
+        }
+
+
+    }
 
     login({ email, password }) {
         if (!email || !password) {
